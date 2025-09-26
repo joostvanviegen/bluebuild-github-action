@@ -222,6 +222,7 @@ runs:
         CLICOLOR_FORCE: "1"
         BUILD_OPTS: ${{ inputs.build_opts }}
       run: |
+        export TMPDIR=/home/runner/_work/_temp
         read -r -a BUILD_OPTS <<< "${BUILD_OPTS}"
         if [ "${BB_SQUASH}" = "true" ]; then
           BUILD_OPTS+=("--build-driver" "podman" "--squash")
@@ -242,3 +243,4 @@ runs:
         else
           bluebuild build -v --push "${BUILD_OPTS[@]}" "${RECIPE_PATH}"
         fi
+        unset TMPDIR
