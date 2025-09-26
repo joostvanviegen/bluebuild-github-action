@@ -189,17 +189,17 @@ runs:
         fi
         echo "recipe_path=${RECIPE_PATH}" >> "${GITHUB_OUTPUT}"
 
-    - name: Install BlueBuild
-      shell: bash
-      env:
-        CLI_VERSION_TAG: ${{ steps.build_vars.outputs.cli_version }}
-      run: |
-        sudo docker create \
-          --name blue-build-installer \
-          "ghcr.io/blue-build/cli:${CLI_VERSION_TAG}-installer"
-        sudo docker cp blue-build-installer:/out/bluebuild /usr/bin/bluebuild
-        sudo docker rm blue-build-installer
-        bluebuild --version
+    #- name: Install BlueBuild
+    #  shell: bash
+    #  env:
+    #    CLI_VERSION_TAG: ${{ steps.build_vars.outputs.cli_version }}
+    #  run: |
+    #    sudo docker create \
+    #      --name blue-build-installer \
+    #      "ghcr.io/blue-build/cli:${CLI_VERSION_TAG}-installer"
+    #    sudo docker cp blue-build-installer:/out/bluebuild /usr/bin/bluebuild
+    #    sudo docker rm blue-build-installer
+    #    bluebuild --version
 
     # blue-build/cli does the heavy lifting
     - name: Build Image
